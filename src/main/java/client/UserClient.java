@@ -1,10 +1,9 @@
 package client;
 
-import UserModel.User;
-import UserModel.UserCredentials;
+import usermodel.User;
+import usermodel.UserCredentials;
 import client.base.Client;
 import io.qameta.allure.Step;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
@@ -27,7 +26,7 @@ public class UserClient extends Client {
                 .spec(getBaseSpec())
                 .body(userCredentials)
                 .when()
-                .post(USER + "email/")
+                .post(USER + "login/")
                 .then();
     }
 
@@ -44,18 +43,11 @@ public class UserClient extends Client {
 
     @Step("Удаление пользователя")
     public ValidatableResponse deleteUser(String accessToken) {
-/*        if (accessToken == null) {
-            return;
-        }*/
         return given()
                 .spec(getBaseSpec())
                 .header("authorization", accessToken)
                 .when()
                 .delete(USER + "user/")
-                .then()
-/*                .assertThat()
-                .statusCode(202)
-                .extract()
-                .path("ok")*/;
+                .then();
     }
 }

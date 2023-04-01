@@ -1,4 +1,4 @@
-package UserModel;
+package usermodel;
 
 public class User {
     private String email;
@@ -6,14 +6,14 @@ public class User {
     private String name;
 
     public User(String email, String password, String name) {
-        this.email = email;
+        this.email = email.toLowerCase();
         this.password = password;
         this.name = name;
     }
 
 
     public String getEmail() {
-        return email;
+        return email.toLowerCase();
     }
     public void setEmail(String email) {
         this.email = email;

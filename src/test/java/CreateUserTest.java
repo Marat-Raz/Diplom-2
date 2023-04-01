@@ -1,5 +1,5 @@
-import UserModel.User;
-import UserModel.UserGenerator;
+import usermodel.User;
+import usermodel.UserGenerator;
 import client.UserClient;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;

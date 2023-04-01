@@ -1,4 +1,4 @@
-package UserModel;
+package usermodel;
 
 public class UserCredentials {
     private String email;

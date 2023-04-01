@@ -1,4 +1,4 @@
-package UserModel;
+package usermodel;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
