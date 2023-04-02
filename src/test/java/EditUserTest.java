@@ -55,17 +55,6 @@ public class EditUserTest {
         assertEquals(updateUser.getName(), name);
     }
     @Test
-    @DisplayName("Изменение данных пользователя без авторизации")
-    public void changingUserDataWithoutAuthorizationTest() {
-        User updateUser = UserGenerator.getUser();
-        UpdateUserResponse = userClient.updateUser(updateUser, "");
-        statusCode = UpdateUserResponse.extract().statusCode();
-        message = UpdateUserResponse.extract().path("message");
-
-        assertEquals(SC_UNAUTHORIZED, statusCode);
-        assertEquals("You should be authorised", message);
-    }
-    @Test
     @DisplayName("Изменение email пользователя с авторизацией")
     public void changeUserEmailWithAuthorizationTest() {
         User updatEmailUser = new User(UserGenerator.getUser().getEmail(), user.getPassword(), user.getName());
@@ -101,5 +90,16 @@ public class EditUserTest {
         assertEquals(SC_FORBIDDEN, statusCode);
         assertFalse(isSuccess);
         assertEquals("User already exists", message);
+    }
+    @Test
+    @DisplayName("Изменение данных пользователя без авторизации")
+    public void changingUserDataWithoutAuthorizationTest() {
+        User updateUser = UserGenerator.getUser();
+        UpdateUserResponse = userClient.updateUser(updateUser, "");
+        statusCode = UpdateUserResponse.extract().statusCode();
+        message = UpdateUserResponse.extract().path("message");
+
+        assertEquals(SC_UNAUTHORIZED, statusCode);
+        assertEquals("You should be authorised", message);
     }
 }

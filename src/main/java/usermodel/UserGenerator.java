@@ -14,13 +14,6 @@ public class UserGenerator {
         return new User(email, password, name);
     }
 
-    public static User getFirstExistingUser() {
-        return new User("existing_User", password, name);
-    }
-    public static User getSecondExistingUser() {
-        return new User("existing_User", password+2, name +2);
-    }
-
     public static User getUserWithoutEmail() {
         return new User("", password, name);
     }
