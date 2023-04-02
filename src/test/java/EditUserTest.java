@@ -1,3 +1,4 @@
+import io.qameta.allure.restassured.AllureRestAssured;
 import usermodel.User;
 import usermodel.UserGenerator;
 import client.UserClient;
@@ -25,7 +26,8 @@ public class EditUserTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-                new RequestLoggingFilter(), new ResponseLoggingFilter());
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured());
     }
     @Before
     public void setUp() {

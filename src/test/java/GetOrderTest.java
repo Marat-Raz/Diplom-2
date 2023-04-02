@@ -1,6 +1,7 @@
 import client.OrderClient;
 import client.UserClient;
 import io.qameta.allure.junit4.DisplayName;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -33,8 +34,8 @@ public class GetOrderTest {
     @BeforeClass
     public static void globalSetUp() {
         RestAssured.filters(
-                new RequestLoggingFilter(), new ResponseLoggingFilter()
-        );
+                new RequestLoggingFilter(), new ResponseLoggingFilter(),
+                new AllureRestAssured());
     }
     @Before
     public void SetUp() {
