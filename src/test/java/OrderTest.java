@@ -6,8 +6,8 @@ import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.ValidatableResponse;
-import ordermodel.Order;
 import ordermodel.OrderGeneration;
+import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -25,7 +25,7 @@ public class OrderTest {
     private String accessToken, message, userName, userEmail;
     private ValidatableResponse response;
     boolean isSuccess;
-    private int statusCode, orderNumber;
+    private int statusCode;
     private OrderGeneration ingredients, nonIngredients;
     private User user;
 
@@ -53,11 +53,9 @@ public class OrderTest {
         response = orderClient.createOrder(ingredients, "");
         statusCode = response.extract().statusCode();
         isSuccess = response.extract().path("success");
-        orderNumber = response.extract().path("order.number");
 
         assertEquals(SC_OK, statusCode);
         assertTrue(isSuccess);
-        assertNotNull(orderNumber);
     }
     @Test
     @DisplayName("Создание заказа с ингредиентами, с авторизацией")
@@ -67,13 +65,11 @@ public class OrderTest {
         statusCode = response.extract().statusCode();
         userName = response.extract().path("order.owner.name");
         userEmail = response.extract().path("order.owner.email");
-        orderNumber = response.extract().path("order.number");
 
         assertEquals(SC_OK, statusCode);
         assertTrue(isSuccess);
         assertEquals(user.getName(), userName);
         assertEquals(user.getEmail(), userEmail);
-        assertNotNull(orderNumber);
     }
     @Test
     @DisplayName("Создание заказа без ингредиентов, без авторизации")

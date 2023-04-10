@@ -31,7 +31,7 @@ public class LoginUserTest {
     public static void globalSetUp() {
         RestAssured.filters(
                 new RequestLoggingFilter(), new ResponseLoggingFilter(),
-                new AllureRestAssured());;
+                new AllureRestAssured());
     }
     @Before
     public void setUp() {

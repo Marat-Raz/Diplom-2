@@ -14,12 +14,11 @@ import org.junit.Test;
 
 import static org.apache.http.HttpStatus.*;
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertNotNull;
 
 public class EditUserTest {
     private UserClient userClient;
     private User user;
-    private String accessToken, email, name, message, password, existAccessToken;
+    private String accessToken, email, name, message;
     private int statusCode;
     boolean isSuccess;
     private ValidatableResponse UpdateUserResponse;

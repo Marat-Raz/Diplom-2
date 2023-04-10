@@ -15,7 +15,6 @@ import usermodel.User;
 import usermodel.UserGenerator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.apache.http.HttpStatus.SC_OK;
 import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
@@ -24,10 +23,10 @@ import static org.junit.Assert.*;
 public class GetOrderTest {
     private final OrderClient orderClient = new OrderClient();
     private final UserClient userClient = new UserClient();
-    private String accessToken, message, userName, userEmail;
+    private String accessToken, message;
     private ValidatableResponse response;
     boolean isSuccess;
-    private int statusCode, orderNumber;
+    private int statusCode;
     private OrderGeneration ingredients, nonIngredients;
     private User user;
 
@@ -85,21 +84,16 @@ public class GetOrderTest {
         ArrayList<String> ordersIngredients = response.extract().path("orders[0].ingredients");
         String orders_id = response.extract().path("orders[0]._id");
         String ordersStatus = response.extract().path("orders[0].status");
-        int ordersNumber = response.extract().path("orders[0].number");
         String ordersCreatedAt = response.extract().path("orders[0].createdAt");
         String ordersUpdatedAt = response.extract().path("orders[0].updatedAt");
-        int total = response.extract().path("total");
-        int totalToday = response.extract().path("totalToday");
 
         assertEquals(SC_OK, statusCode);
         assertTrue(isSuccess);
         assertNotNull(ordersIngredients);
         assertNotNull(orders_id);
         assertNotNull(ordersStatus);
-        assertNotNull(ordersNumber);
         assertNotNull(ordersCreatedAt);
         assertNotNull(ordersUpdatedAt);
-        assertNotNull(total);
-        assertNotNull(totalToday);
+
     }
 }
