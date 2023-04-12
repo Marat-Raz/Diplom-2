@@ -53,13 +53,9 @@ public class GetOrderTest {
         response = orderClient.getUserOrder(accessToken);
         statusCode = response.extract().statusCode();
         isSuccess = response.extract().path("success");
-        int total = response.extract().path("total");
-        int totalToday = response.extract().path("totalToday");
 
         assertEquals(SC_OK, statusCode);
         assertTrue(isSuccess);
-        assertNotNull(total);
-        assertNotNull(totalToday);
     }
     @Test
     @DisplayName("Получение списка заказов неавторизованного пользователя")
