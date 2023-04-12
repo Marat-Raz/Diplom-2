@@ -27,8 +27,7 @@ public class GetOrderTest {
     private ValidatableResponse response;
     boolean isSuccess;
     private int statusCode;
-    private OrderGeneration ingredients, nonIngredients;
-    private User user;
+    private OrderGeneration ingredients;
 
     @BeforeClass
     public static void globalSetUp() {
@@ -39,8 +38,8 @@ public class GetOrderTest {
     @Before
     public void SetUp() {
         ingredients = OrderGeneration.getIngredients();
-        nonIngredients = OrderGeneration.getEmptyIngredients();
-        user = UserGenerator.getUser();
+        OrderGeneration.getEmptyIngredients();
+        User user = UserGenerator.getUser();
         response = userClient.createUser(user);
         accessToken = response.extract().path("accessToken");
     }
