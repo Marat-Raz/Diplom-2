@@ -38,7 +38,6 @@ public class GetOrderTest {
     @Before
     public void SetUp() {
         ingredients = OrderGeneration.getIngredients();
-        OrderGeneration.getEmptyIngredients();
         User user = UserGenerator.getUser();
         response = userClient.createUser(user);
         accessToken = response.extract().path("accessToken");
